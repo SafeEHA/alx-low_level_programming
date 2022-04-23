@@ -1,26 +1,29 @@
-#include "main.h"
-#include <stdio.h>
+#include "holberton.h"
 
 /**
- * print_diagsums - prints the sums of the two diagonals of a square matrix
- * @a: pointer to start of matrix
- * @size: width of matrix column
+ *rot13 - encode characters
+ *@k: array of characters
  *
- * Return: void
+ *Return: array k
  */
-void print_diagsums(int *a, int size)
-{
-	int i, j, p, l = 0, r = 0;
 
-	for (i = 0; i < size; i++)
-	{
-		p = (i * size) + i;
-		l += *(a + p);
-	}
-	for (j = 0; j < size; j++)
-	{
-		p = (j * size) + (size - 1 - j);
-		r += *(a + p);
-	}
-	printf("%i, %i\n", l, r);
+char *rot13(char *k)
+{
+char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+int i = 0;
+int j = 0;
+
+while (k[i] != '\0')
+{
+for (j = 0; a[j] != '\0' && k[i] != a[j]; j++)
+;
+if (j < 52)
+{
+k[i] = b[j];
+}
+i++;
+}
+return (k);
 }
