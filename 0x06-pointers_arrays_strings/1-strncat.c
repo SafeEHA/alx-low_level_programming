@@ -1,20 +1,25 @@
-#include "main.c"
+#include "holberton.h"
+#include <string.h>
 
 /**
- * _memcpy - copies memory area
- * @dest: destination of copy
- * @src: memory area to copy
- * @n: number of bytes to copy
- *
- * Return: pointer to dest
+ * _strncat -  function that concatenates two strings.
+ * @src: source
+ * @dest: destination
+ * @n: number.
+ * Return: dest.
  */
-char *_memcpy(char *dest, char *src, unsigned int n)
-{
-	unsigned int i;
 
-	for (i = 0; i < n; i++)
+char *_strncat(char *dest, char *src, int n)
+{
+	int index = strlen(dest);
+	int a = 0;
+
+	while (a < n && *src)
 	{
-		*(dest + i) = *(src + i);
+		dest[index + a] = *src;
+		src++;
+		a++;
 	}
+	dest[index + a] = '\0';
 	return (dest);
 }
