@@ -2,9 +2,9 @@
 
 /**
  * _memset -  function that fills memory with a constant byte.
- * @s: buffer.
- * @b: el valor.
- * @n: limite de iteración.
+ * @s: buffer pointer that has the address of the memory to fill
+ * @b: constant byte that will be written into the momory
+ * @n: amount of times the byte will be written into the memory
  * Return: s.
  */
 
