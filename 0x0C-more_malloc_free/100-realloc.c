@@ -1,54 +1,54 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /**
- * simple_print_buffer - prints buffer in hexa
- * @buffer: the address of memory to print
- * @size: the size of the memory to print
+ *_realloc - reallocates a memory block using malloc and free
  *
- * Return: Nothing.
- */
-void simple_print_buffer(char *buffer, unsigned int size)
-{
-    unsigned int i;
-
-    i = 0;
-    while (i < size)
-    {
-        if (i % 10)
-        {
-            printf(" ");
-        }
-        if (!(i % 10) && i)
-        {
-            printf("\n");
-        }
-        printf("0x%02x", buffer[i]);
-        i++;
-    }
-    printf("\n");
-}
-
-/**
- * main - check the code for Holberton School students.
+ *@ptr: original pointer to be reallocated
+ *@old_size: size of old memory allocation in bytes
+ *@new_size: size of new memory allocation in bytes
  *
- * Return: Always 0.
+ *Return: a pointer to the new memory allocation or NULL if the process fails
  */
-int main(void)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-    char *p;
-    int i;
+	int *nptr, *p;
+	unsigned int c;
 
-    p = malloc(sizeof(char) * 10);
-    p = _realloc(p, sizeof(char) * 10, sizeof(char) * 98);
-    i = 0;
-    while (i < 98)
-    {
-        p[i++] = 98;
-    }
-    simple_print_buffer(p, 98);
-    free(p);
-    return (0);
+	if (old_size == new_size)
+	{
+		return (ptr);
+	}
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	p = ptr;
+	nptr = malloc(new_size);
+	if (nptr == NULL)
+	{
+		return (NULL);
+	}
+	if (ptr == NULL)
+	{
+		return (nptr);
+	}
+	if (new_size > old_size)
+	{
+		for (c = 0; c < old_size; c++)
+		{
+			nptr[c] = p[c];
+		}
+	}
+	else
+	{
+		for (c = 0; c < new_size; c++)
+		{
+			nptr[c] = p[c];
+		}
+	}
+	free(ptr);
+	return (nptr);
 }
